@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.get('/fetch-users', (req, res) => {
-	res.end('1233333');
+	res.sendFile(__dirname + '/users.json');
 });
 
 app.listen(port);
