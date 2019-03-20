@@ -29,7 +29,7 @@ export const users = (state = InitialState, { type, payload }) => {
 		case FETCH_USERS_ERROR:
 			return {...state, error: payload, isLoading: false};
 		case CHANGE_FILTER_OPTION:
-			return {...state, ...payload};
+			return {...state, ...payload, currentPage: 0};
 		case CHANGE_CURRENT_PAGE:
 			return {...state, currentPage: payload};
 		default:

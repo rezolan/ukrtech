@@ -41,6 +41,7 @@ class Users extends PureComponent {
 					marginPagesDisplayed={0}
 					pageCount={pageCount}
 					initialPage={currentPage}
+					forcePage={currentPage}
 					{...classes}/>
 			</div>
 		)
