@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
+import { withStyles } from '@material-ui/core/styles';
+import { styles } from './Users.styles';
 import { UsersList } from '../components/UsersList';
 import { UsersFilter } from '../components/UsersFilter';
 import { fetchUsers, changeFilterOption, changeCurrentPage } from '../actions/index.js';
@@ -16,7 +18,12 @@ class Users extends PureComponent {
 
 	render() {
 		const { pageRangeDisplayed } = this.state;
-		const { changeFilterOption, changeCurrentPage, users: { usersList, filterList, filteringFieldsNames, currentPage } } = this.props;
+		const {
+			changeFilterOption,
+			changeCurrentPage,
+			users: { usersList, filterList, filteringFieldsNames, currentPage },
+			classes: { paginationContainer }
+		} = this.props;
 		const pageCount = filterList.length / pageRangeDisplayed;
 		return (
 			<div>
@@ -33,7 +40,8 @@ class Users extends PureComponent {
 					pageRangeDisplayed={pageRangeDisplayed}
 					marginPagesDisplayed={0}
 					pageCount={pageCount}
-					initialPage={currentPage}/>
+					initialPage={currentPage}
+					containerClassName={paginationContainer}/>
 			</div>
 		)
 	}
@@ -47,4 +55,4 @@ const mapDispatchToProps = dispatch => (
 	});
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Users));

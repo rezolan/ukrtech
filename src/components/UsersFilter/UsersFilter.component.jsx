@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import Grid from '@material-ui/core/Grid';
 
 const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => {
 	const fields = Object.keys(filteringFieldsNames);
@@ -14,14 +15,17 @@ const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => 
 		}
 		return acc;
 	}, {...filteringFieldsNames});
-	console.log(uniqList);
 
 	return (
-		<div>
+		<Grid
+			container
+			spacing={16}>
 			{fields.map((field, index) => {
 				const uniqValues = Object.values(uniqList[field]);
 				return (
-					<div key={index}>
+					<Grid
+						item
+						key={index}>
 						<h2>Select {field}</h2>
 						<Select
 							onChange={event => changeFilterOption({[field]: event})}
@@ -29,10 +33,10 @@ const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => 
 							defaultValue={uniqValues[0]}
 							isClearable={true}
 							isSearchable={true}/>
-					</div>
+					</Grid>
 				);
 			})}
-		</div>
+		</Grid>
 	)
 };
 
