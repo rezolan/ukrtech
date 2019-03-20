@@ -1,22 +1,37 @@
 import React from 'react';
+import Select from 'react-select';
 
-const UsersFilter = ({ filteringFields, listData}) => {
-	const fields = Object.keys(filteringFields);
-	const mapList = listData.reduce((acc, user) => {
+const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => {
+	const fields = Object.keys(filteringFieldsNames);
+	const uniqList = listData.reduce((acc, user, index) => {
 		for(const field of fields) {
-			if(!acc[field]) {
-				acc[field] = [user[field]];
-				continue;
-			}
-			if(!acc[field].includes(user[field])) {
-				acc[field].push(user[field])
+			const newItem = {value: user[field], label: user[field]};
+			if(!index) {
+				acc[field] = {[user[field]]: newItem};
+			} else {
+				acc[field] = {...acc[field], [user[field]]: newItem}
 			}
 		}
 		return acc;
-	}, {});
+	}, {...filteringFieldsNames});
+	console.log(uniqList);
+
 	return (
 		<div>
-			{fields.map(field => field)}
+			{fields.map((field, index) => {
+				const uniqValues = Object.values(uniqList[field]);
+				return (
+					<div key={index}>
+						<h2>Select {field}</h2>
+						<Select
+							onChange={event => changeFilterOption({[field]: event})}
+							options={uniqValues}
+							defaultValue={uniqValues[0]}
+							isClearable={true}
+							isSearchable={true}/>
+					</div>
+				);
+			})}
 		</div>
 	)
 };
