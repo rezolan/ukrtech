@@ -30,7 +30,6 @@ const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => 
 						<Select
 							onChange={event => changeFilterOption({[field]: event})}
 							options={uniqValues}
-							defaultValue={uniqValues[0]}
 							isClearable={true}
 							isSearchable={true}/>
 					</Grid>
