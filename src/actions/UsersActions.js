@@ -1,5 +1,0 @@
-
-
-const fetchUsers = () => dispatch => {
-
-};

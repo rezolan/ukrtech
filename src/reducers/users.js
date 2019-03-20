@@ -8,6 +8,7 @@ const InitialState = {
 };
 
 export const users = (state = InitialState, { type, payload }) => {
+	console.log(type);
 	switch(type) {
 		case FETCH_USERS_REQUEST:
 			return {...state, isLoading: true};
