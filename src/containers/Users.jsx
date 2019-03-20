@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,16 +9,20 @@ import { fetchUsers, changeFilterOption, changeCurrentPage } from '../actions/in
 
 
 class Users extends PureComponent {
-	state = {
-		pageRangeDisplayed: 5
-	}
 	renderAll() {
-		const { pageRangeDisplayed } = this.state;
 		const {
 			changeFilterOption,
 			changeCurrentPage,
 			classes,
-			users: { usersList, filterList, filteringFieldsNames, currentPage, isLoading, error }
+			users: {
+				usersList,
+				filterList,
+				filteringFieldsNames,
+				currentPage,
+				pageRangeDisplayed,
+				isLoading,
+				error
+			}
 		} = this.props;
 		const pageCount = filterList.length / pageRangeDisplayed;
 		if(isLoading) return <h1>Spinner</h1>;
@@ -37,7 +41,7 @@ class Users extends PureComponent {
 					pageCount={pageCount}
 					initialPage={currentPage}
 					forcePage={currentPage}
-					{...classes}/>}
+					{...classes}/>
 			</>)
 	}
 	componentDidMount() {

@@ -26,7 +26,7 @@ const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => 
 					<Grid
 						item
 						key={index}>
-						<h2>Select {field}</h2>
+						<h2>Select {filteringFieldsNames[field]}</h2>
 						<Select
 							onChange={event => changeFilterOption({[field]: event})}
 							options={uniqValues}

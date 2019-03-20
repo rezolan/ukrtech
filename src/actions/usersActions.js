@@ -30,9 +30,9 @@ export const changeFilterOption = payload => dispatch => {
 		}
 		return true;
 	});
-	dispatch({type: CHANGE_FILTER_OPTION, payload: {filterList, filteringFields}})
+	dispatch({type: CHANGE_FILTER_OPTION, payload: {filterList, filteringFields}});
 };
 
 export const changeCurrentPage = payload => dispatch => {
-	dispatch({type: CHANGE_CURRENT_PAGE, payload})
+	dispatch({type: CHANGE_CURRENT_PAGE, payload});
 };

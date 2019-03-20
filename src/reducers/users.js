@@ -16,6 +16,7 @@ const InitialState = {
 	},
 	filteringFields: {},
 	currentPage: 0,
+	pageRangeDisplayed: 5,
 	isLoading: true,
 	error: null
 };
