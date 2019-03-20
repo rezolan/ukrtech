@@ -21,8 +21,8 @@ class Users extends PureComponent {
 		const {
 			changeFilterOption,
 			changeCurrentPage,
-			users: { usersList, filterList, filteringFieldsNames, currentPage },
-			classes: { paginationContainer }
+			classes,
+			users: { usersList, filterList, filteringFieldsNames, currentPage }
 		} = this.props;
 		const pageCount = filterList.length / pageRangeDisplayed;
 		return (
@@ -41,7 +41,7 @@ class Users extends PureComponent {
 					marginPagesDisplayed={0}
 					pageCount={pageCount}
 					initialPage={currentPage}
-					containerClassName={paginationContainer}/>
+					{...classes}/>
 			</div>
 		)
 	}
