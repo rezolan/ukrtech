@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { styles } from './UsersList.styles';
+import PropTypes from 'prop-types';
 
 const UsersList = ({ listData, classes: { paper } }) => (
 	<Grid
@@ -24,5 +25,10 @@ const UsersList = ({ listData, classes: { paper } }) => (
 		))}
 	</Grid>
 );
+
+UsersList.propTypes = {
+	listData: PropTypes.array.isRequired,
+	classes: PropTypes.object
+};
 
 export default withStyles(styles)(UsersList);

@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 
 const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => {
 	const fields = Object.keys(filteringFieldsNames);
@@ -37,6 +38,12 @@ const UsersFilter = ({ listData, filteringFieldsNames, changeFilterOption }) => 
 			})}
 		</Grid>
 	)
+};
+
+UsersFilter.propTypes = {
+	listData: PropTypes.array.isRequired,
+	filteringFieldsNames: PropTypes.object.isRequired,
+	changeFilterOption: PropTypes.func.isRequired
 };
 
 export default UsersFilter;

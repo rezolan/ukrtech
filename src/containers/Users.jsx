@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import ReactPaginate from 'react-paginate';
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import { styles } from './Users.styles';
 import { UsersList } from '../components/UsersList';
 import { UsersFilter } from '../components/UsersFilter';
@@ -33,7 +34,8 @@ class Users extends PureComponent {
 					changeFilterOption={changeFilterOption}
 					listData={usersList}
 					filteringFieldsNames={filteringFieldsNames}/>
-				<UsersList listData={filterList.slice(currentPage*pageRangeDisplayed, (currentPage+1)*pageRangeDisplayed)}/>
+				<UsersList
+					listData={filterList.slice(currentPage*pageRangeDisplayed, (currentPage+1)*pageRangeDisplayed)}/>
 				<ReactPaginate
 					onPageChange={({ selected })=> changeCurrentPage(selected)}
 					pageRangeDisplayed={pageRangeDisplayed}
@@ -67,5 +69,12 @@ const mapDispatchToProps = dispatch => (
 		changeCurrentPage: selected => dispatch(changeCurrentPage(selected))
 	});
 
+Users.propTypes = {
+	fetchUsers: PropTypes.func.isRequired,
+	changeFilterOption: PropTypes.func.isRequired,
+	changeCurrentPage: PropTypes.func.isRequired,
+	users: PropTypes.object.isRequired,
+	classes: PropTypes.object,
+};
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Users));
